@@ -1,7 +1,8 @@
 FROM golang:alpine
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
 WORKDIR /build
-COPY go.mod go.sum ./
+COPY . .
 RUN go mod download
-COPY *.go ./
+
 RUN go build -o /main 
 CMD ["/main"]
